@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spin to Win - Shine Pearl</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background: #f8f9fa;
+    }
+    #wheel {
+      margin: 0 auto;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 10px solid #007bff;
+      background: conic-gradient(
+        gold 0deg 60deg,
+        red 60deg 120deg,
+        green 120deg 180deg,
+        pink 180deg 240deg,
+        skyblue 240deg 300deg,
+        orange 300deg 360deg
+      );
+      transition: transform 4s ease;
+    }
+    #spinBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎯 Spin & Win</h1>
+  <div id="wheel"></div>
+  <button id="spinBtn">Spin</button>
+  <div id="result"></div>
+
+  <script>
+    const wheel = document.getElementById("wheel");
+    const spinBtn = document.getElementById("spinBtn");
+    const result = document.getElementById("result");
+
+    const prizes = ["💰 10 Coins", "🎁 Gift Box", "😲 Try Again", "💎 50 Coins", "🔥 Bonus Spin", "📱 Mobile Chance"];
+
+    spinBtn.addEventListener("click", () => {
+      const randomDeg = Math.floor(5000 + Math.random() * 5000);
+      wheel.style.transform = `rotate(${randomDeg}deg)`;
+
+      const actualDeg = randomDeg % 360;
+      const sector = Math.floor(actualDeg / 60);
+
+      setTimeout(() => {
+        result.innerText = `You won: ${prizes[sector]}`;
+      }, 4000);
+    });
+  </script>
+</body>
+</html>
